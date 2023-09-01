@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/result.dart';
 
 import 'answer_button.dart';
 
@@ -17,9 +18,18 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   answerQuestion() {
     setState(() {
-      
+      if (questions.length  > currentQindex+1) {
         currentQindex++;
-      
+        print(questions.length);
+        print(currentQindex); 
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Result(),
+          ),
+        );
+      }
     });
   }
 
@@ -32,15 +42,13 @@ class _QuestionScreenState extends State<QuestionScreen> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            currentQuestion.text,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.lato(
-              color: const Color.fromARGB(255, 235, 160, 248),
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
-            )
-          ),
+          Text(currentQuestion.text,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.lato(
+                color: const Color.fromARGB(255, 235, 160, 248),
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
+              )),
           ...currentQuestion.getShuffledAnswers().map((answers) {
             return Padding(
               padding: const EdgeInsets.all(10.0),
