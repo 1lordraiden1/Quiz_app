@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/result.dart';
+//import 'package:quiz_app/result.dart';
 
 import 'answer_button.dart';
 
@@ -18,18 +18,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   answerQuestion() {
     setState(() {
-      if (questions.length  > currentQindex+1) {
-        currentQindex++;
-        print(questions.length);
-        print(currentQindex); 
-      } else {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Result(),
-          ),
-        );
-      }
+      currentQindex++;
     });
   }
 
@@ -63,3 +52,19 @@ class _QuestionScreenState extends State<QuestionScreen> {
     );
   }
 }
+
+
+
+/*
+if (questions.length  > currentQindex+1) {
+        currentQindex++;
+        
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Result(),
+          ),
+        );
+      }
+*/
