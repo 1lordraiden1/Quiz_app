@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/question_screen.dart';
+import 'package:quiz_app/result.dart';
 import 'package:quiz_app/start.dart';
 
 class Quiz extends StatefulWidget {
@@ -14,6 +15,8 @@ class _QuizState extends State<Quiz> {
   Widget? activeScreen;
 
   List<String> selectedAnswers = [];
+
+  int correctAnswersCounter = 0;
 
   @override
   void initState() {
@@ -31,12 +34,29 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+    for (int i = 0; i < selectedAnswers.length; i++) {
+      if (questions[i].answers[0] == answer) {
+        correctAnswersCounter++;
+      }
+    }
+
+    void restartQuiz() {
+      selectedAnswers = [];
+      correctAnswersCounter = 0;
+      setState(() {
+        activeScreen = StartScreen(
+          startQ: switchScreen,
+        );
+      });
+    }
 
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
-        activeScreen = StartScreen(
-          startQ: switchScreen,
+        //selectedAnswers = [];
+        activeScreen = Result(
+          choosenAnswers: selectedAnswers,
+          correctAnswersCounter: correctAnswersCounter,
+          restart: restartQuiz,
         );
       });
     }
@@ -52,7 +72,8 @@ class _QuizState extends State<Quiz> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 188, 161, 233),
+                Color.fromARGB(255, 51, 0, 80),
+              
                 Color.fromARGB(255, 63, 8, 158),
               ],
               begin: Alignment.topLeft,
