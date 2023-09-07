@@ -35,6 +35,7 @@ class Result extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(40.0),
         child: Column(
+          
           children: [
             Text(
               "You answered $correctAnswersCounter out of ${choosenAnswers.length} questions correctly!",
@@ -48,6 +49,9 @@ class Result extends StatelessWidget {
               height: 30,
             ),
             QuestionSummary(SummaryAnswers()),
+            const SizedBox(
+              height: 30,
+            ),
             OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.white,
