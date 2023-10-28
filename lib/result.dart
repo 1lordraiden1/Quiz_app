@@ -35,7 +35,6 @@ class Result extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(40.0),
         child: Column(
-          
           children: [
             Text(
               "You answered $correctAnswersCounter out of ${choosenAnswers.length} questions correctly!",

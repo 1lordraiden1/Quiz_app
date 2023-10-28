@@ -1,60 +1,15 @@
 import 'package:quiz_app/models/quiz_question.dart';
 
-const questions = [
-  QuizQuestion(
-    'What is the capital of USA?',
-    [
-      'Washinton',
-      'California',
-      'New York',
-      'Taixes',
-    ],
-  ),
-  QuizQuestion(
-    'What is the result of merging red and blue?', 
-  [
-    'purple',
-    'pink',
-    'green',
-    'darken red',
-  ]),
-  QuizQuestion(
-    'What\'s the fruit which contains Vitamine B12?',
-    [
-      'Banana',
-      'Apple',
-      'Melon',
-      'Mango',
-    ],
-  ),
-  QuizQuestion(
-    'Which fruit it\'s name identical to it\'s color',
-    [
-      'orange',
-      'fruit',
-      'grass',
-      'None of the above',
-    ],
-  ),
-  QuizQuestion(
-    'What happens if you merged yellow and green, We get?',
-    [
-      'Sky',
-      'gray',
-      'blue',
-      'white',
-    ],
-  ),
-  QuizQuestion(
-    'What is the resulted value of dividing Acceleration and Speed',
-    [
-      'Time',
-      'Space',
-      'Mass',
-      'Distance',
-    ],
-  ),
+import '../models/sql_helper.dart';
+
+var q = [];
+
+var questions = [
+  
 ];
+
+
+
 
 /*
 const questions = [

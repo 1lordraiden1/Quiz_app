@@ -13,10 +13,15 @@ class QuestionScreen extends StatefulWidget {
 
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
+
+  
 }
+
 
 class _QuestionScreenState extends State<QuestionScreen> {
   var currentQindex = 0;
+
+  
 
   answerQuestion(String selectedAnswer) {
     widget.onSelectAnswer(selectedAnswer);
@@ -24,6 +29,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
       currentQindex++;
     });
   }
+
+  
 
   @override
   Widget build(BuildContext context) {

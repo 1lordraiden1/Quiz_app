@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/models/quiz_question.dart';
+import 'package:quiz_app/models/sql_helper.dart';
 import 'package:quiz_app/question_screen.dart';
 import 'package:quiz_app/result.dart';
 import 'package:quiz_app/start.dart';
@@ -21,11 +23,34 @@ class _QuizState extends State<Quiz> {
   @override
   void initState() {
     activeScreen = StartScreen(startQ: switchScreen);
+    _refreshQuestions();
+
     super.initState();
+  }
+
+  void _refreshQuestions() async {
+    final data = await SQLHelper.getItems();
+    questions = [];
+    setState(() {
+      for (int i = 0; i < data.length; i++) {
+        questions.add(
+          QuizQuestion(
+            data[i]['title'],
+            [
+              data[i]['ans1'],
+              data[i]['ans2'],
+              data[i]['ans3'],
+              data[i]['ans4'],
+            ],
+          ),
+        );
+      }
+    });
   }
 
   void switchScreen() {
     setState(() {
+      _refreshQuestions();
       activeScreen = QuestionScreen(
         onSelectAnswer: chooseAnswer,
       );
@@ -73,7 +98,6 @@ class _QuizState extends State<Quiz> {
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 51, 0, 80),
-              
                 Color.fromARGB(255, 63, 8, 158),
               ],
               begin: Alignment.topLeft,
